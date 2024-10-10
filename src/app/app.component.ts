@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { JoinTileComponent } from './components/join_tile/join_tile.component';
+import { UserTileComponent } from './components/user_tile/user_tile.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, UserTileComponent, JoinTileComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
