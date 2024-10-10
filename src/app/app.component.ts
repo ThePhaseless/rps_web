@@ -12,4 +12,9 @@ import { UserTileComponent } from './components/user_tile/user_tile.component';
 })
 export class AppComponent {
   title = 'RPS_WEB';
+  constructor() {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark'); // Remove darkMode
+    }
+  }
 }

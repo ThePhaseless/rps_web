@@ -1,0 +1,47 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+// Add classes here
+@mixin classes($theme) {
+  .mat-warn {
+    color: mat.get-theme-color($theme, error) !important;
+  }
+
+  .mat-primary {
+    color: mat.get-theme-color($theme, primary) !important;
+  }
+}
+
+// Do not modify
+$theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$violet-palette,
+    ),
+  )
+);
+
+$theme-dark: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$violet-palette,
+    ),
+  )
+);
+
+@mixin darkTheme() {
+  $theme: $theme-dark !global;
+}
+
+html {
+  @include mat.all-component-themes($theme);
+  @include classes($theme);
+}
+
+.dark {
+  @include darkTheme();
+  @include mat.all-component-colors($theme);
+  @include classes($theme-dark);
+}
