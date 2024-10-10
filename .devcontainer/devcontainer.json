@@ -12,7 +12,10 @@
       "extensions": [
         "Angular.ng-template",
         "cyrilletuzi.angular-schematics",
-        "johnpapa.Angular2"
+        "johnpapa.Angular2",
+        "bradlc.vscode-tailwindcss",
+        "pranaygp.vscode-css-peek",
+        "ecmel.vscode-html-css"
       ]
     }
   }
