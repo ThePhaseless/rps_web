@@ -1,1 +1,18 @@
-<p>join_tile works!</p>,
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Join or create a game</mat-card-title>
+    <mat-card-subtitle>Rock Paper Scissors</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="mt-3">
+    <div class="grid">
+      <button mat-flat-button routerLink="/game/0">Create a game</button>
+      <div class="grid items-center grid-flow-col gap-3">
+        <mat-form-field [formControl]="formControl" class="mt-5">
+          <mat-label>Game ID</mat-label>
+          <input matInput />
+        </mat-form-field>
+        <button mat-button routerLink="/game/1">Join</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
