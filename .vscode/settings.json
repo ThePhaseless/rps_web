@@ -11,5 +11,8 @@
         "angular-page": {
             "skipChangeDetectionOnPush": true
         }
-    }
+    },
+    "typescript.preferences.autoImportFileExcludePatterns": [
+        "src/environments/environment.*.ts",
+    ]
 }
