@@ -3,5 +3,6 @@ USER node
 
 RUN curl -fsSL https://bun.sh/install | bash
 ENV PATH=/home/node/.bun/bin:$PATH
-RUN bun install -g @angular/cli
+RUN bun install -g @angular/cli @openapitools/openapi-generator-cli
 RUN echo "source <(ng completion script)" >> ~/.bashrc
+ENV TS_POST_PROCESS_FILE="bunx prettier --write"
