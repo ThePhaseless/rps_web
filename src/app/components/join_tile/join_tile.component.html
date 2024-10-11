@@ -7,11 +7,22 @@
     <div class="grid">
       <button mat-flat-button routerLink="/game/0">Create a game</button>
       <div class="grid items-center grid-flow-col gap-3">
-        <mat-form-field (formControl)="(formControl)" class="mt-5">
+        <mat-form-field class="mt-5">
           <mat-label>Game ID</mat-label>
-          <input matInput />
+          <input matInput [formControl]="formControl" />
+          @if (this.formControl.hasError('required')) {
+          <mat-error>You must enter a value</mat-error>
+          } @else if (this.formControl.hasError('gameExists')) {
+          <mat-error>Game does not exist</mat-error>
+          }
         </mat-form-field>
-        <button mat-button routerLink="/game/1">Join</button>
+        <button
+          mat-button
+          routerLink="/game/{{ formControl.value }}"
+          [disabled]="formControl.invalid"
+        >
+          Join
+        </button>
       </div>
     </div>
   </mat-card-content>
