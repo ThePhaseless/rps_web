@@ -7,14 +7,16 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Player } from './player';
-import { PlayerChoice } from './playerChoice';
+import { GameRound } from './gameRound';
 
 export interface Game {
   id?: string;
   start_time?: string;
   end_time?: string | null;
-  winner?: Player | null;
+  winner_id?: string | null;
+  logs?: Array<string>;
+  max_rounds?: number;
+  rounds?: Array<GameRound>;
   creator_id: string;
-  player_ids?: { [key: string]: PlayerChoice };
+  player_ids?: Array<string>;
 }

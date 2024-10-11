@@ -1,4 +1,5 @@
 export * from './game';
+export * from './gameRound';
 export * from './hTTPValidationError';
 export * from './healthyResponse';
 export * from './player';

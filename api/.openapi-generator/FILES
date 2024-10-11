@@ -8,6 +8,7 @@ encoder.ts
 git_push.sh
 index.ts
 model/game.ts
+model/gameRound.ts
 model/hTTPValidationError.ts
 model/healthyResponse.ts
 model/models.ts
