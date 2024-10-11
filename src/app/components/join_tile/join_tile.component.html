@@ -7,7 +7,7 @@
     <div class="grid">
       <button mat-flat-button routerLink="/game/0">Create a game</button>
       <div class="grid items-center grid-flow-col gap-3">
-        <mat-form-field [formControl]="formControl" class="mt-5">
+        <mat-form-field (formControl)="(formControl)" class="mt-5">
           <mat-label>Game ID</mat-label>
           <input matInput />
         </mat-form-field>
