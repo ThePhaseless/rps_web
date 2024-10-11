@@ -2,9 +2,9 @@ import { Component, Signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Player } from '../../api';
 import { JoinTileComponent } from './components/join_tile/join_tile.component';
+import { LoadingCardComponent } from './components/loading_card/loading_card.component';
 import { UserTileComponent } from './components/user_tile/user_tile.component';
 import { LocalService } from './services/local.service';
-import { LoadingCardComponent } from './components/loading_card/loading_card.component';
 
 @Component({
   selector: 'app-root',
