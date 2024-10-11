@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { DefaultService } from '../../../../api';
+import { LocalService } from '../../services/local.service';
 import { GameExistsValidator } from '../../utils/game_exists.validator';
 
 @Component({
@@ -35,7 +36,8 @@ export class JoinTileComponent {
   constructor(
     private apiService: DefaultService,
     private validator: GameExistsValidator,
-    private router: Router
+    private router: Router,
+    private playerService: LocalService
   ) {
     this.formControl = new FormControl<string>('', {
       validators: [Validators.required],
@@ -44,8 +46,10 @@ export class JoinTileComponent {
   }
 
   createGame(): void {
-    this.apiService.createGameGamePost().subscribe((gameID) => {
-      this.router.navigate(['game', gameID.id]);
-    });
+    this.apiService
+      .createGameGamePost(this.playerService.currentPlayer().name)
+      .subscribe((gameID) => {
+        this.router.navigate(['game', gameID.id]);
+      });
   }
 }

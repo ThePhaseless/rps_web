@@ -124,12 +124,12 @@ export class DefaultService {
 
   /**
    * Create Game
-   * @param user
+   * @param playerId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public createGameGamePost(
-    user: string,
+    playerId: string,
     observe?: 'body',
     reportProgress?: boolean,
     options?: {
@@ -139,7 +139,7 @@ export class DefaultService {
     },
   ): Observable<Game>;
   public createGameGamePost(
-    user: string,
+    playerId: string,
     observe?: 'response',
     reportProgress?: boolean,
     options?: {
@@ -149,7 +149,7 @@ export class DefaultService {
     },
   ): Observable<HttpResponse<Game>>;
   public createGameGamePost(
-    user: string,
+    playerId: string,
     observe?: 'events',
     reportProgress?: boolean,
     options?: {
@@ -159,7 +159,7 @@ export class DefaultService {
     },
   ): Observable<HttpEvent<Game>>;
   public createGameGamePost(
-    user: string,
+    playerId: string,
     observe: any = 'body',
     reportProgress: boolean = false,
     options?: {
@@ -168,9 +168,18 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<any> {
-    if (user === null || user === undefined) {
+    if (playerId === null || playerId === undefined) {
       throw new Error(
-        'Required parameter user was null or undefined when calling createGameGamePost.',
+        'Required parameter playerId was null or undefined when calling createGameGamePost.',
+      );
+    }
+
+    let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
+    if (playerId !== undefined && playerId !== null) {
+      localVarQueryParameters = this.addToHttpParams(
+        localVarQueryParameters,
+        <any>playerId,
+        'player_id',
       );
     }
 
@@ -222,6 +231,7 @@ export class DefaultService {
       `${this.configuration.basePath}${localVarPath}`,
       {
         context: localVarHttpContext,
+        params: localVarQueryParameters,
         responseType: <any>responseType_,
         withCredentials: this.configuration.withCredentials,
         headers: localVarHeaders,
@@ -557,10 +567,12 @@ export class DefaultService {
 
   /**
    * Get Games
+   * @param playerId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public getGamesGamesGet(
+    playerId: string,
     observe?: 'body',
     reportProgress?: boolean,
     options?: {
@@ -570,6 +582,7 @@ export class DefaultService {
     },
   ): Observable<Array<Game>>;
   public getGamesGamesGet(
+    playerId: string,
     observe?: 'response',
     reportProgress?: boolean,
     options?: {
@@ -579,6 +592,7 @@ export class DefaultService {
     },
   ): Observable<HttpResponse<Array<Game>>>;
   public getGamesGamesGet(
+    playerId: string,
     observe?: 'events',
     reportProgress?: boolean,
     options?: {
@@ -588,6 +602,7 @@ export class DefaultService {
     },
   ): Observable<HttpEvent<Array<Game>>>;
   public getGamesGamesGet(
+    playerId: string,
     observe: any = 'body',
     reportProgress: boolean = false,
     options?: {
@@ -596,6 +611,21 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<any> {
+    if (playerId === null || playerId === undefined) {
+      throw new Error(
+        'Required parameter playerId was null or undefined when calling getGamesGamesGet.',
+      );
+    }
+
+    let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
+    if (playerId !== undefined && playerId !== null) {
+      localVarQueryParameters = this.addToHttpParams(
+        localVarQueryParameters,
+        <any>playerId,
+        'player_id',
+      );
+    }
+
     let localVarHeaders = this.defaultHeaders;
 
     let localVarHttpHeaderAcceptSelected: string | undefined =
@@ -644,116 +674,7 @@ export class DefaultService {
       `${this.configuration.basePath}${localVarPath}`,
       {
         context: localVarHttpContext,
-        responseType: <any>responseType_,
-        withCredentials: this.configuration.withCredentials,
-        headers: localVarHeaders,
-        observe: observe,
-        transferCache: localVarTransferCache,
-        reportProgress: reportProgress,
-      },
-    );
-  }
-
-  /**
-   * Get Player Games
-   * @param playerName
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public getPlayerGamesPlayerPlayerNameGamesGet(
-    playerName: string,
-    observe?: 'body',
-    reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'application/json';
-      context?: HttpContext;
-      transferCache?: boolean;
-    },
-  ): Observable<Array<Game>>;
-  public getPlayerGamesPlayerPlayerNameGamesGet(
-    playerName: string,
-    observe?: 'response',
-    reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'application/json';
-      context?: HttpContext;
-      transferCache?: boolean;
-    },
-  ): Observable<HttpResponse<Array<Game>>>;
-  public getPlayerGamesPlayerPlayerNameGamesGet(
-    playerName: string,
-    observe?: 'events',
-    reportProgress?: boolean,
-    options?: {
-      httpHeaderAccept?: 'application/json';
-      context?: HttpContext;
-      transferCache?: boolean;
-    },
-  ): Observable<HttpEvent<Array<Game>>>;
-  public getPlayerGamesPlayerPlayerNameGamesGet(
-    playerName: string,
-    observe: any = 'body',
-    reportProgress: boolean = false,
-    options?: {
-      httpHeaderAccept?: 'application/json';
-      context?: HttpContext;
-      transferCache?: boolean;
-    },
-  ): Observable<any> {
-    if (playerName === null || playerName === undefined) {
-      throw new Error(
-        'Required parameter playerName was null or undefined when calling getPlayerGamesPlayerPlayerNameGamesGet.',
-      );
-    }
-
-    let localVarHeaders = this.defaultHeaders;
-
-    let localVarHttpHeaderAcceptSelected: string | undefined =
-      options && options.httpHeaderAccept;
-    if (localVarHttpHeaderAcceptSelected === undefined) {
-      // to determine the Accept header
-      const httpHeaderAccepts: string[] = ['application/json'];
-      localVarHttpHeaderAcceptSelected =
-        this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    }
-    if (localVarHttpHeaderAcceptSelected !== undefined) {
-      localVarHeaders = localVarHeaders.set(
-        'Accept',
-        localVarHttpHeaderAcceptSelected,
-      );
-    }
-
-    let localVarHttpContext: HttpContext | undefined =
-      options && options.context;
-    if (localVarHttpContext === undefined) {
-      localVarHttpContext = new HttpContext();
-    }
-
-    let localVarTransferCache: boolean | undefined =
-      options && options.transferCache;
-    if (localVarTransferCache === undefined) {
-      localVarTransferCache = true;
-    }
-
-    let responseType_: 'text' | 'json' | 'blob' = 'json';
-    if (localVarHttpHeaderAcceptSelected) {
-      if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-        responseType_ = 'text';
-      } else if (
-        this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)
-      ) {
-        responseType_ = 'json';
-      } else {
-        responseType_ = 'blob';
-      }
-    }
-
-    let localVarPath = `/player/${this.configuration.encodeParam({ name: 'playerName', value: playerName, in: 'path', style: 'simple', explode: false, dataType: 'string', dataFormat: undefined })}/games`;
-    return this.httpClient.request<Array<Game>>(
-      'get',
-      `${this.configuration.basePath}${localVarPath}`,
-      {
-        context: localVarHttpContext,
+        params: localVarQueryParameters,
         responseType: <any>responseType_,
         withCredentials: this.configuration.withCredentials,
         headers: localVarHeaders,
@@ -766,12 +687,12 @@ export class DefaultService {
 
   /**
    * Get Player
-   * @param playerName
+   * @param playerId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public getPlayerPlayerPlayerNameGet(
-    playerName: string,
+  public getPlayerPlayerPlayerIdGet(
+    playerId: string,
     observe?: 'body',
     reportProgress?: boolean,
     options?: {
@@ -780,8 +701,8 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<Player>;
-  public getPlayerPlayerPlayerNameGet(
-    playerName: string,
+  public getPlayerPlayerPlayerIdGet(
+    playerId: string,
     observe?: 'response',
     reportProgress?: boolean,
     options?: {
@@ -790,8 +711,8 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<HttpResponse<Player>>;
-  public getPlayerPlayerPlayerNameGet(
-    playerName: string,
+  public getPlayerPlayerPlayerIdGet(
+    playerId: string,
     observe?: 'events',
     reportProgress?: boolean,
     options?: {
@@ -800,8 +721,8 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<HttpEvent<Player>>;
-  public getPlayerPlayerPlayerNameGet(
-    playerName: string,
+  public getPlayerPlayerPlayerIdGet(
+    playerId: string,
     observe: any = 'body',
     reportProgress: boolean = false,
     options?: {
@@ -810,9 +731,9 @@ export class DefaultService {
       transferCache?: boolean;
     },
   ): Observable<any> {
-    if (playerName === null || playerName === undefined) {
+    if (playerId === null || playerId === undefined) {
       throw new Error(
-        'Required parameter playerName was null or undefined when calling getPlayerPlayerPlayerNameGet.',
+        'Required parameter playerId was null or undefined when calling getPlayerPlayerPlayerIdGet.',
       );
     }
 
@@ -858,7 +779,7 @@ export class DefaultService {
       }
     }
 
-    let localVarPath = `/player/${this.configuration.encodeParam({ name: 'playerName', value: playerName, in: 'path', style: 'simple', explode: false, dataType: 'string', dataFormat: undefined })}`;
+    let localVarPath = `/player/${this.configuration.encodeParam({ name: 'playerId', value: playerId, in: 'path', style: 'simple', explode: false, dataType: 'string', dataFormat: undefined })}`;
     return this.httpClient.request<Player>(
       'get',
       `${this.configuration.basePath}${localVarPath}`,

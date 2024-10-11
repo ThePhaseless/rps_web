@@ -15,6 +15,6 @@ export interface Game {
   start_time?: string;
   end_time?: string | null;
   winner?: Player | null;
-  creator: Player;
-  players?: { [key: string]: PlayerChoice };
+  creator_id: string;
+  player_ids?: { [key: string]: PlayerChoice };
 }

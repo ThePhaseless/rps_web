@@ -10,6 +10,7 @@
 
 export interface Player {
   creation_time?: string;
+  id?: string;
   name: string;
   wins?: number;
   current_game_id?: string | null;
