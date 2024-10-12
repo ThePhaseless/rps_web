@@ -1,6 +1,7 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { DefaultService } from '../../../api';
+import { NotesService } from './notes.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class UserService {
 
   constructor(
     private authService: SocialAuthService,
-    private apiService: DefaultService
+    private apiService: DefaultService,
+    private notesService: NotesService
   ) {
     this.authService.authState.subscribe({
       next: (user) => {
@@ -24,5 +26,6 @@ export class UserService {
 
   logout() {
     this.authService.signOut();
+    this.notesService.notes.set([]);
   }
 }
