@@ -46,10 +46,9 @@ export class JoinTileComponent {
   }
 
   createGame(): void {
-    this.apiService
-      .createGameGamePost(this.playerService.currentPlayer().name)
-      .subscribe((gameID) => {
-        this.router.navigate(['game', gameID.id]);
-      });
+    this.apiService.createGameGamePost().subscribe((gameID) => {
+      if (gameID.id == '0') return;
+      this.router.navigate(['game', gameID.id!]);
+    });
   }
 }
