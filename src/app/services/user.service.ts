@@ -33,6 +33,7 @@ export class UserService {
     this.apiService.logoutLogoutGet().subscribe(() => {
       this.notesService.notes.set([]);
       this.authService.signOut();
+      localStorage.clear();
       this.loggedIn.set(false);
     });
   }
