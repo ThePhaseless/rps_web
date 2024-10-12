@@ -124,6 +124,7 @@ export class DefaultService {
    * Create Note
    * @param name
    * @param note
+   * @param userId
    * @param password
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
@@ -131,6 +132,7 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
+    userId: string,
     password?: string,
     observe?: 'body',
     reportProgress?: boolean,
@@ -143,6 +145,7 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
+    userId: string,
     password?: string,
     observe?: 'response',
     reportProgress?: boolean,
@@ -155,6 +158,7 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
+    userId: string,
     password?: string,
     observe?: 'events',
     reportProgress?: boolean,
@@ -167,6 +171,7 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
+    userId: string,
     password?: string,
     observe: any = 'body',
     reportProgress: boolean = false,
@@ -184,6 +189,11 @@ export class DefaultService {
     if (note === null || note === undefined) {
       throw new Error(
         'Required parameter note was null or undefined when calling createNoteNotePost.',
+      );
+    }
+    if (userId === null || userId === undefined) {
+      throw new Error(
+        'Required parameter userId was null or undefined when calling createNoteNotePost.',
       );
     }
 
@@ -582,6 +592,126 @@ export class DefaultService {
       `${this.configuration.basePath}${localVarPath}`,
       {
         context: localVarHttpContext,
+        responseType: <any>responseType_,
+        withCredentials: this.configuration.withCredentials,
+        headers: localVarHeaders,
+        observe: observe,
+        transferCache: localVarTransferCache,
+        reportProgress: reportProgress,
+      },
+    );
+  }
+
+  /**
+   * Login
+   * @param googleToken
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public loginLoginGet(
+    googleToken: string,
+    observe?: 'body',
+    reportProgress?: boolean,
+    options?: {
+      httpHeaderAccept?: 'application/json';
+      context?: HttpContext;
+      transferCache?: boolean;
+    },
+  ): Observable<any>;
+  public loginLoginGet(
+    googleToken: string,
+    observe?: 'response',
+    reportProgress?: boolean,
+    options?: {
+      httpHeaderAccept?: 'application/json';
+      context?: HttpContext;
+      transferCache?: boolean;
+    },
+  ): Observable<HttpResponse<any>>;
+  public loginLoginGet(
+    googleToken: string,
+    observe?: 'events',
+    reportProgress?: boolean,
+    options?: {
+      httpHeaderAccept?: 'application/json';
+      context?: HttpContext;
+      transferCache?: boolean;
+    },
+  ): Observable<HttpEvent<any>>;
+  public loginLoginGet(
+    googleToken: string,
+    observe: any = 'body',
+    reportProgress: boolean = false,
+    options?: {
+      httpHeaderAccept?: 'application/json';
+      context?: HttpContext;
+      transferCache?: boolean;
+    },
+  ): Observable<any> {
+    if (googleToken === null || googleToken === undefined) {
+      throw new Error(
+        'Required parameter googleToken was null or undefined when calling loginLoginGet.',
+      );
+    }
+
+    let localVarQueryParameters = new HttpParams({ encoder: this.encoder });
+    if (googleToken !== undefined && googleToken !== null) {
+      localVarQueryParameters = this.addToHttpParams(
+        localVarQueryParameters,
+        <any>googleToken,
+        'google_token',
+      );
+    }
+
+    let localVarHeaders = this.defaultHeaders;
+
+    let localVarHttpHeaderAcceptSelected: string | undefined =
+      options && options.httpHeaderAccept;
+    if (localVarHttpHeaderAcceptSelected === undefined) {
+      // to determine the Accept header
+      const httpHeaderAccepts: string[] = ['application/json'];
+      localVarHttpHeaderAcceptSelected =
+        this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    }
+    if (localVarHttpHeaderAcceptSelected !== undefined) {
+      localVarHeaders = localVarHeaders.set(
+        'Accept',
+        localVarHttpHeaderAcceptSelected,
+      );
+    }
+
+    let localVarHttpContext: HttpContext | undefined =
+      options && options.context;
+    if (localVarHttpContext === undefined) {
+      localVarHttpContext = new HttpContext();
+    }
+
+    let localVarTransferCache: boolean | undefined =
+      options && options.transferCache;
+    if (localVarTransferCache === undefined) {
+      localVarTransferCache = true;
+    }
+
+    let responseType_: 'text' | 'json' | 'blob' = 'json';
+    if (localVarHttpHeaderAcceptSelected) {
+      if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+        responseType_ = 'text';
+      } else if (
+        this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)
+      ) {
+        responseType_ = 'json';
+      } else {
+        responseType_ = 'blob';
+      }
+    }
+
+    let localVarPath = `/login`;
+    return this.httpClient.request<any>(
+      'get',
+      `${this.configuration.basePath}${localVarPath}`,
+      {
+        context: localVarHttpContext,
+        params: localVarQueryParameters,
         responseType: <any>responseType_,
         withCredentials: this.configuration.withCredentials,
         headers: localVarHeaders,
