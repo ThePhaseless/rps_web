@@ -6,7 +6,7 @@ import { DefaultService } from '../../../api';
   providedIn: 'root',
 })
 export class UserService {
-  google_user!: WritableSignal<SocialUser | null>;
+  google_user!: WritableSignal<SocialUser>;
   loggedIn!: WritableSignal<boolean>;
 
   constructor(
@@ -15,7 +15,7 @@ export class UserService {
   ) {
     this.authService.authState.subscribe({
       next: (user) => {
-        this.google_user = signal<SocialUser | null>(user);
+        this.google_user = signal<SocialUser>(user);
         this.loggedIn = signal<boolean>(user != null);
         this.apiService.loginLoginGet(user.idToken).subscribe();
       },
