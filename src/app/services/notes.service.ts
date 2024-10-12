@@ -1,12 +1,21 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { DefaultService, NoteOut } from '../../../api';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotesService {
   public notes = signal([] as NoteOut[]);
-  constructor(private api: DefaultService) {}
+  constructor(private api: DefaultService, userService: UserService) {
+    effect(() => {
+      if (userService.loggedIn()) {
+        this.getNotes();
+      } else {
+        this.notes.set([]);
+      }
+    });
+  }
 
   public sendNote(name: string, note: string, password?: string) {
     this.api.createNoteNotePost(name, note, password).subscribe(() => {
