@@ -25,7 +25,10 @@ export class UserService {
   }
 
   logout() {
-    this.authService.signOut();
-    this.notesService.notes.set([]);
+    this.apiService.logoutLogoutGet().subscribe(() => {
+      this.notesService.notes.set([]);
+      this.authService.signOut();
+      this.loggedIn.set(false);
+    });
   }
 }
