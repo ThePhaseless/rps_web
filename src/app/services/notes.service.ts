@@ -21,9 +21,6 @@ export class NotesService {
   }
 
   public decodeNote(note: NoteOut, password: string) {
-    if (note.id === undefined) {
-      return;
-    }
-    this.api.getNoteNoteNoteIdGet(note.id, password);
+    return this.api.getNoteNoteNoteIdGet(note.id!, password);
   }
 }

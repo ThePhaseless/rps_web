@@ -1,4 +1,4 @@
-<mat-card class="max-h-screen overflow-scroll">
+<mat-card class="max-h-screen overflow-y-auto">
   <mat-card-header>
     <div class="flex justify-between w-full">
       <div>
@@ -10,18 +10,18 @@
   </mat-card-header>
   <mat-card-content>
     <mat-accordion>
-      @for (item of notesService.notes(); track $index) {
+      @for (note of notesService.notes(); track $index) {
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            @if (item.is_encrypted) {
+            @if (note.is_encrypted) {
             <mat-icon>lock</mat-icon>
             }
-            {{ item.name }}
+            {{ note.name }}
           </mat-panel-title>
-          <mat-panel-description>{{ item.created_at }}</mat-panel-description>
+          <mat-panel-description>{{ note.created_at }}</mat-panel-description>
         </mat-expansion-panel-header>
-        <p>{{ item.note }}</p>
+        <app-note-tile [note]="note"></app-note-tile>
       </mat-expansion-panel>
       }
     </mat-accordion>

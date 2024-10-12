@@ -1,0 +1,23 @@
+@if (note() && note()!.is_encrypted) {
+<div class="flex items-center">
+  <mat-form-field class="mt-5">
+    <mat-label>Password</mat-label>
+    <input
+      [formControl]="passwordController"
+      matInput
+      placeholder="Sth secure i guess"
+    />
+    <mat-error>{{ currentError() }}</mat-error>
+  </mat-form-field>
+  <button
+    (click)="notesService.decodeNote(note()!, passwordController.value!)"
+    mat-icon-button
+    (click)="decrypt()"
+    [disabled]="!passwordController.valid"
+    class="ml-2"
+  >
+    <mat-icon>lock_open</mat-icon>
+  </button>
+</div>
+}
+<p>{{ note()!.note }}</p>
