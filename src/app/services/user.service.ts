@@ -1,13 +1,13 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Injectable, Signal, signal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { DefaultService } from '../../../api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  google_user!: Signal<SocialUser>;
-  loggedIn!: Signal<boolean>;
+  google_user!: WritableSignal<SocialUser>;
+  loggedIn!: WritableSignal<boolean>;
 
   constructor(
     private authService: SocialAuthService,
@@ -21,5 +21,10 @@ export class UserService {
         this.apiService.loginLoginGet(user.idToken).subscribe();
       }
     });
+  }
+
+  logout() {
+    this.authService.signOut();
+    this.loggedIn.set(false);
   }
 }

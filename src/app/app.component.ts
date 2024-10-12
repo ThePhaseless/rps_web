@@ -5,6 +5,7 @@ import { LoadingCardComponent } from './components/loading_card/loading_card.com
 import { NoteCreateComponent } from './components/note_create/note_create.component';
 import { NoteListComponent } from './components/note_list/note_list.component';
 import { UserCardComponent } from './components/user_card/user_card.component';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ import { UserCardComponent } from './components/user_card/user_card.component';
 export class AppComponent {
   title = 'RPS_WEB';
 
-  constructor() {
+  constructor(public userService: UserService) {
     // if dark theme, add dark to html
     if (
       window.matchMedia &&
