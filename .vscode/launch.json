@@ -9,7 +9,9 @@
       "preLaunchTask": "npm: start",
       "url": "http://localhost:4200/",
       "runtimeArgs": [
-        "--disable-web-security"
+        "--disable-web-security",
+        "--host",
+        "0.0.0.0"
       ]
     },
     {

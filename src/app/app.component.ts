@@ -1,31 +1,23 @@
-import { Component, Signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterOutlet } from '@angular/router';
-import { Player } from '../../api';
-import { JoinTileComponent } from './components/join_tile/join_tile.component';
 import { LoadingCardComponent } from './components/loading_card/loading_card.component';
-import { UserTileComponent } from './components/user_tile/user_tile.component';
-import { LocalService } from './services/local.service';
+import { NoteCreateComponent } from './components/note_create/note_create.component';
+import { NoteListComponent } from './components/note_list/note_list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    UserTileComponent,
-    JoinTileComponent,
     LoadingCardComponent,
+    NoteCreateComponent,
+    MatExpansionModule,
+    NoteListComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'RPS_WEB';
-  player: Signal<Player>;
-  constructor(private playerService: LocalService) {
-    this.player = this.playerService.currentPlayer.asReadonly();
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark'); // Remove darkMode
-    }
-  }
 }

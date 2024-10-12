@@ -8,6 +8,11 @@
  * Do not edit the class manually.
  */
 
-export interface HealthyResponse {
-  message?: string;
+export interface Note {
+  id?: string;
+  created_at?: string;
+  name: string;
+  note: string;
+  is_encrypted: boolean;
+  password: string | null;
 }

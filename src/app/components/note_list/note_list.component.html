@@ -1,0 +1,29 @@
+<mat-card class="max-h-screen overflow-scroll">
+  <mat-card-header>
+    <div class="flex justify-between w-full">
+      <div>
+        <mat-card-title>All notes</mat-card-title>
+        <mat-card-subtitle>Some may require password</mat-card-subtitle>
+      </div>
+      <mat-icon (click)="notesService.getNotes()">refresh</mat-icon>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-accordion>
+      @for (item of notesService.notes(); track $index) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            @if (item.is_encrypted) {
+            <mat-icon>lock</mat-icon>
+            }
+            {{ item.name }}
+          </mat-panel-title>
+          <mat-panel-description>{{ item.created_at }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ item.note }}</p>
+      </mat-expansion-panel>
+      }
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

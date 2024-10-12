@@ -7,9 +7,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PlayerChoice } from './playerChoice';
 
-export interface GameRound {
-  round_number: number;
-  choices: { [key: string]: PlayerChoice };
+export interface NoteOut {
+  id?: string;
+  created_at?: string;
+  name: string;
+  note: string;
+  is_encrypted: boolean;
 }
