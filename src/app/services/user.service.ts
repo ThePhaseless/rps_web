@@ -16,10 +16,12 @@ export class UserService {
     private notesService: NotesService
   ) {
     this.authService.authState.subscribe({
-      next: (user) => {
-        this.google_user = signal<SocialUser>(user);
-        this.loggedIn = signal<boolean>(user != null);
-        this.apiService.loginLoginGet(user.idToken).subscribe();
+      next: (social_user) => {
+        this.apiService.loginLoginGet(social_user.idToken).subscribe(() => {
+          this.google_user = signal<SocialUser>(social_user);
+          this.loggedIn = signal<boolean>(social_user != null);
+          this.notesService.getNotes();
+        });
       },
     });
   }
