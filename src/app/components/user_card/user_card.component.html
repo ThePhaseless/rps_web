@@ -2,10 +2,10 @@
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title>
-      Welcome, {{ userService.google_user().name }}
+      Welcome, {{ userService.google_user()!.name }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ userService.google_user().email }}
+      {{ userService.google_user()!.email }}
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content> </mat-card-content>

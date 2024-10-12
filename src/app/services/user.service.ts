@@ -1,5 +1,5 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { DefaultService } from '../../../api';
 import { NotesService } from './notes.service';
 
@@ -7,8 +7,8 @@ import { NotesService } from './notes.service';
   providedIn: 'root',
 })
 export class UserService {
-  google_user!: WritableSignal<SocialUser>;
-  loggedIn!: WritableSignal<boolean>;
+  loggedIn = signal<boolean>(false);
+  google_user = signal<SocialUser | null>(null);
 
   constructor(
     private authService: SocialAuthService,
@@ -17,9 +17,12 @@ export class UserService {
   ) {
     this.authService.authState.subscribe({
       next: (social_user) => {
+        this.loggedIn.set(social_user != null);
+        this.google_user.set(social_user);
+        if (social_user == null) {
+          return;
+        }
         this.apiService.loginLoginGet(social_user.idToken).subscribe(() => {
-          this.google_user = signal<SocialUser>(social_user);
-          this.loggedIn = signal<boolean>(social_user != null);
           this.notesService.getNotes();
         });
       },
