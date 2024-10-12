@@ -8,7 +8,7 @@ export class NotesService {
   public notes = signal([] as NoteOut[]);
   constructor(private api: DefaultService) {}
 
-  public sendNote(name: string, note: string, password: string) {
+  public sendNote(name: string, note: string, password?: string) {
     this.api.createNoteNotePost(name, note, password).subscribe(() => {
       this.getNotes();
     });

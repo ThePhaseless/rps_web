@@ -28,6 +28,8 @@ import { HTTPValidationError } from '../model/hTTPValidationError';
 import { Note } from '../model/note';
 // @ts-ignore
 import { NoteOut } from '../model/noteOut';
+// @ts-ignore
+import { User } from '../model/user';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
@@ -124,16 +126,16 @@ export class DefaultService {
    * Create Note
    * @param name
    * @param note
-   * @param userId
    * @param password
+   * @param userId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public createNoteNotePost(
     name: string,
     note: string,
-    userId: string,
     password?: string,
+    userId?: string,
     observe?: 'body',
     reportProgress?: boolean,
     options?: {
@@ -145,8 +147,8 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
-    userId: string,
     password?: string,
+    userId?: string,
     observe?: 'response',
     reportProgress?: boolean,
     options?: {
@@ -158,8 +160,8 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
-    userId: string,
     password?: string,
+    userId?: string,
     observe?: 'events',
     reportProgress?: boolean,
     options?: {
@@ -171,8 +173,8 @@ export class DefaultService {
   public createNoteNotePost(
     name: string,
     note: string,
-    userId: string,
     password?: string,
+    userId?: string,
     observe: any = 'body',
     reportProgress: boolean = false,
     options?: {
@@ -189,11 +191,6 @@ export class DefaultService {
     if (note === null || note === undefined) {
       throw new Error(
         'Required parameter note was null or undefined when calling createNoteNotePost.',
-      );
-    }
-    if (userId === null || userId === undefined) {
-      throw new Error(
-        'Required parameter userId was null or undefined when calling createNoteNotePost.',
       );
     }
 
@@ -505,10 +502,12 @@ export class DefaultService {
 
   /**
    * Get Notes
+   * @param userId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
   public getNotesNoteGet(
+    userId?: string,
     observe?: 'body',
     reportProgress?: boolean,
     options?: {
@@ -518,6 +517,7 @@ export class DefaultService {
     },
   ): Observable<Array<NoteOut>>;
   public getNotesNoteGet(
+    userId?: string,
     observe?: 'response',
     reportProgress?: boolean,
     options?: {
@@ -527,6 +527,7 @@ export class DefaultService {
     },
   ): Observable<HttpResponse<Array<NoteOut>>>;
   public getNotesNoteGet(
+    userId?: string,
     observe?: 'events',
     reportProgress?: boolean,
     options?: {
@@ -536,6 +537,7 @@ export class DefaultService {
     },
   ): Observable<HttpEvent<Array<NoteOut>>>;
   public getNotesNoteGet(
+    userId?: string,
     observe: any = 'body',
     reportProgress: boolean = false,
     options?: {
@@ -617,7 +619,7 @@ export class DefaultService {
       context?: HttpContext;
       transferCache?: boolean;
     },
-  ): Observable<any>;
+  ): Observable<User>;
   public loginLoginGet(
     googleToken: string,
     observe?: 'response',
@@ -627,7 +629,7 @@ export class DefaultService {
       context?: HttpContext;
       transferCache?: boolean;
     },
-  ): Observable<HttpResponse<any>>;
+  ): Observable<HttpResponse<User>>;
   public loginLoginGet(
     googleToken: string,
     observe?: 'events',
@@ -637,7 +639,7 @@ export class DefaultService {
       context?: HttpContext;
       transferCache?: boolean;
     },
-  ): Observable<HttpEvent<any>>;
+  ): Observable<HttpEvent<User>>;
   public loginLoginGet(
     googleToken: string,
     observe: any = 'body',
@@ -706,7 +708,7 @@ export class DefaultService {
     }
 
     let localVarPath = `/login`;
-    return this.httpClient.request<any>(
+    return this.httpClient.request<User>(
       'get',
       `${this.configuration.basePath}${localVarPath}`,
       {

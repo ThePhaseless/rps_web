@@ -52,10 +52,9 @@ export class NoteCreateComponent {
     if (!this.formGroup.valid) {
       return;
     }
-    this.notesService.sendNote(
-      this.formGroup.get('name')!.value!,
-      this.formGroup.get('note')!.value!,
-      this.formGroup.get('password')!.value!
-    );
+    const name = this.formGroup.get('name')!.value!;
+    const note = this.formGroup.get('note')!.value!;
+    const password = this.formGroup.get('password')!.value!;
+    this.notesService.sendNote(name, note, password);
   }
 }

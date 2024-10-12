@@ -11,6 +11,7 @@ model/hTTPValidationError.ts
 model/models.ts
 model/note.ts
 model/noteOut.ts
+model/user.ts
 model/validationError.ts
 model/validationErrorLocInner.ts
 param.ts
