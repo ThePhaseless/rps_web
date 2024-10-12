@@ -1,3 +1,3 @@
 export const environment = {
-  API_BASE_PATH: `http://api.nerine.dev`,
+  API_BASE_PATH: `https://myapi.nerine.dev`,
 };
