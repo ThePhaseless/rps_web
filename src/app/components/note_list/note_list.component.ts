@@ -25,6 +25,13 @@ import { NoteTileComponent } from '../note_tile/note_tile.component';
   styleUrl: './note_list.component.scss',
 })
 export class NoteListComponent {
+  readableDate(string: string) {
+    return new Date(string).toLocaleString(undefined, {
+      year: '2-digit',
+      month: 'long',
+      day: 'numeric',
+    });
+  }
   constructor(public notesService: NotesService) {
     notesService.getNotes();
   }

@@ -14,12 +14,14 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            @if (note.is_encrypted) {
-            <mat-icon>lock</mat-icon>
-            }
             {{ note.name }}
           </mat-panel-title>
-          <mat-panel-description>{{ note.created_at }}</mat-panel-description>
+          <mat-panel-description>
+            @if (note.is_encrypted) {
+            <mat-icon fontIcon="lock" class="scale-50"></mat-icon>
+            }
+            {{ readableDate(note.created_at!) }}</mat-panel-description
+          >
         </mat-expansion-panel-header>
         <app-note-tile [note]="note"></app-note-tile>
       </mat-expansion-panel>
