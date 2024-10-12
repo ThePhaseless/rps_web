@@ -15,8 +15,13 @@ export class NotesService {
   }
 
   public getNotes() {
-    this.api.getNotesNoteGet().subscribe((data) => {
-      this.notes.set(data);
+    this.api.getNotesNoteGet().subscribe({
+      next: (data) => {
+        this.notes.set(data);
+      },
+      error: () => {
+        this.notes.set([]);
+      },
     });
   }
 
