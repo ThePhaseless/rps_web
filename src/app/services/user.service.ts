@@ -8,6 +8,7 @@ import { NotesService } from './notes.service';
 })
 export class UserService {
   loggedIn = signal<boolean>(false);
+  connected = signal<boolean>(false);
   google_user = signal<SocialUser | null>(null);
 
   constructor(
@@ -15,6 +16,10 @@ export class UserService {
     private apiService: DefaultService,
     private notesService: NotesService
   ) {
+    apiService.configuration.withCredentials = true;
+    apiService.pingPingGet().subscribe(() => {
+      this.connected.set(true);
+    });
     this.authService.authState.subscribe({
       next: (social_user) => {
         this.loggedIn.set(social_user != null);
@@ -22,14 +27,12 @@ export class UserService {
         if (social_user == null) {
           return;
         }
-        this.apiService
-          .loginLoginGet(social_user.idToken)
-          .subscribe((user_id) => {
-            this.apiService.configuration.credentials = {
-              user_id: user_id.id!,
-            };
-            this.notesService.getNotes();
-          });
+        this.apiService.loginLoginGet(social_user.idToken).subscribe((user_id) => {
+          this.apiService.configuration.credentials = {
+            user_id: user_id.id!,
+          };
+          this.notesService.getNotes();
+        });
       },
     });
   }

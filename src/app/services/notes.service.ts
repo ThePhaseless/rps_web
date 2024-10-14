@@ -7,10 +7,7 @@ import { DefaultService, NoteOut } from '../../../api';
 })
 export class NotesService {
   public notes = signal([] as NoteOut[]);
-  constructor(private api: DefaultService, private httpService: HttpClient) {
-    api.configuration.withCredentials = true;
-    api.pingPingGet().subscribe();
-  }
+  constructor(private api: DefaultService, private httpService: HttpClient) {}
 
   public sendNote(name: string, note: string, password?: string) {
     this.api.createNoteNotePost(name, note, password).subscribe(() => {
