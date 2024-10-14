@@ -10,4 +10,3 @@ RUN bun run build
 FROM nginx
 
 COPY --from=builder /app/dist/browser /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/
