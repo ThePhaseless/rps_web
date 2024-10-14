@@ -8,7 +8,7 @@ import { DefaultService, NoteOut } from '../../../api';
 export class NotesService {
   public notes = signal([] as NoteOut[]);
   constructor(private api: DefaultService, private httpService: HttpClient) {
-    // api.configuration.withCredentials = true;
+    api.configuration.withCredentials = true;
     api.pingPingGet().subscribe();
   }
 
