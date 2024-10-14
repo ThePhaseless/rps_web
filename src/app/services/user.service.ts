@@ -22,9 +22,14 @@ export class UserService {
         if (social_user == null) {
           return;
         }
-        this.apiService.loginLoginGet(social_user.idToken).subscribe(() => {
-          this.notesService.getNotes();
-        });
+        this.apiService
+          .loginLoginGet(social_user.idToken)
+          .subscribe((user_id) => {
+            this.apiService.configuration.credentials = {
+              user_id: user_id.id!,
+            };
+            this.notesService.getNotes();
+          });
       },
     });
   }

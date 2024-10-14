@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { DefaultService, NoteOut } from '../../../api';
 
@@ -6,7 +7,10 @@ import { DefaultService, NoteOut } from '../../../api';
 })
 export class NotesService {
   public notes = signal([] as NoteOut[]);
-  constructor(private api: DefaultService) {}
+  constructor(private api: DefaultService, private httpService: HttpClient) {
+    // api.configuration.withCredentials = true;
+    api.pingPingGet().subscribe();
+  }
 
   public sendNote(name: string, note: string, password?: string) {
     this.api.createNoteNotePost(name, note, password).subscribe(() => {
