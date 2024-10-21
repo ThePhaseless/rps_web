@@ -10,7 +10,7 @@ index.ts
 model/hTTPValidationError.ts
 model/models.ts
 model/note.ts
-model/noteOut.ts
+model/noteInput.ts
 model/user.ts
 model/validationError.ts
 model/validationErrorLocInner.ts

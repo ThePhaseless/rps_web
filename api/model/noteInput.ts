@@ -9,6 +9,9 @@
  */
 
 
-export interface ValidationErrorLocInner { 
+export interface NoteInput { 
+    name: string;
+    note: string;
+    password?: string | null;
 }
 
