@@ -2,15 +2,17 @@
   <mat-card-header>
     <div class="flex justify-between w-full">
       <div>
-        <mat-card-title>Your notes</mat-card-title>
-        <mat-card-subtitle>Some may require password</mat-card-subtitle>
+        <mat-card-title>All notes</mat-card-title>
+        <mat-card-subtitle
+          >As an admin, you can see all notes</mat-card-subtitle
+        >
       </div>
       <mat-icon (click)="notesService.getNotes()">refresh</mat-icon>
     </div>
   </mat-card-header>
   <mat-card-content>
     <mat-accordion>
-      @for (note of notesService.notes(); track $index) {
+      @for (note of notesService.allNotes(); track $index) {
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -19,8 +21,7 @@
           <mat-panel-description>
             @if (note.is_encrypted) {
             <mat-icon fontIcon="lock" class="scale-50"></mat-icon>
-            }
-            {{ readableDate(note.created_at!) }}</mat-panel-description
+            } Creator: {{ note.creator_id }}</mat-panel-description
           >
         </mat-expansion-panel-header>
         <app-note-tile [note]="note"></app-note-tile>

@@ -9,7 +9,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BASE_PATH } from '../../api';
 
-import { environment } from '../environments/environment.base';
+import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { credentialsInterceptor } from './utils/secure.interceptor';
 
@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(environment.cliend_id),
+            provider: new GoogleLoginProvider(environment.client_id),
           },
         ],
         onError: (err) => {

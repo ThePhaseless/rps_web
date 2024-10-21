@@ -2,13 +2,13 @@ import { Component, effect, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterOutlet } from '@angular/router';
+import { AllNoteListComponent } from './components/all_note_list/all_note_list.component';
 import { LoadingCardComponent as SignInInfoComponent } from './components/loading_card/loading_card.component';
 import { LoadingDialogComponent } from './components/loading_dialog/loading_dialog.component';
 import { NoteCreateComponent } from './components/note_create/note_create.component';
 import { NoteListComponent } from './components/note_list/note_list.component';
 import { UserCardComponent } from './components/user_card/user_card.component';
 import { UserService } from './services/user.service';
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,6 +19,7 @@ import { UserService } from './services/user.service';
     MatExpansionModule,
     NoteListComponent,
     UserCardComponent,
+    AllNoteListComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

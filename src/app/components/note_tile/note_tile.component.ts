@@ -11,7 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { NoteOut } from '../../../../api';
+import { NoteOut } from '../../../../api/model/noteOut';
 import { NotesService } from '../../services/notes.service';
 
 @Component({
@@ -48,6 +48,10 @@ export class NoteTileComponent {
           this.currentError.set(this.setError());
         },
       });
+  }
+
+  public deleteNote() {
+    this.notesService.deleteNote(this.note()!.id!);
   }
 
   public setError() {

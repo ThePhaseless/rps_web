@@ -1,4 +1,4 @@
-@if (note() && note()!.is_encrypted) {
+@if (note() && note()?.note === "encrypted") {
 <div class="flex items-center">
   <mat-form-field class="mt-5">
     <mat-label>Password</mat-label>
@@ -21,3 +21,6 @@
 </div>
 }
 <p>{{ note()!.note }}</p>
+<mat-action-row>
+  <button mat-flat-button color="warn" (click)="deleteNote()">Delete</button>
+</mat-action-row>

@@ -1,8 +1,6 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Injectable, signal } from '@angular/core';
-import { DefaultService } from '../../../api';
-import { NotesService } from './notes.service';
-
+import { DefaultService, User } from '../../../api';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,28 +8,30 @@ export class UserService {
   loggedIn = signal<boolean>(false);
   connected = signal<boolean>(false);
   google_user = signal<SocialUser | null>(null);
+  is_admin = signal<boolean>(false);
+  api_user = signal<User | null>(null);
 
   constructor(
     private authService: SocialAuthService,
-    private apiService: DefaultService,
-    private notesService: NotesService
+    private apiService: DefaultService
   ) {
     apiService.configuration.withCredentials = true;
-    apiService.pingPingGet().subscribe(() => {
-      this.connected.set(true);
+    apiService.pingPingGet().subscribe({
+      next: () => {
+        this.connected.set(true);
+      },
     });
     this.authService.authState.subscribe({
       next: (social_user) => {
-        this.loggedIn.set(social_user != null);
         this.google_user.set(social_user);
         if (social_user == null) {
           return;
         }
-        this.apiService.loginLoginGet(social_user.idToken).subscribe((user_id) => {
-          this.apiService.configuration.credentials = {
-            user_id: user_id.id!,
-          };
-          this.notesService.getNotes();
+        this.apiService.loginLoginGet(social_user.idToken).subscribe({
+          next: () => {
+            this.api_user.set(user);
+            this.loggedIn.set(true);
+          },
         });
       },
     });
@@ -39,7 +39,6 @@ export class UserService {
 
   logout() {
     this.apiService.logoutLogoutGet().subscribe(() => {
-      this.notesService.notes.set([]);
       this.authService.signOut();
       localStorage.clear();
       this.loggedIn.set(false);

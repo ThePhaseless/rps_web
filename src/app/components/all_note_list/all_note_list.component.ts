@@ -1,30 +1,25 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { NotesService } from '../../services/notes.service';
 import { NoteTileComponent } from '../note_tile/note_tile.component';
 
 @Component({
-  selector: 'app-note-list',
+  selector: 'app-all-note-list',
   standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
     MatIconModule,
     MatExpansionModule,
-    MatFormFieldModule,
-    FormsModule,
-    ReactiveFormsModule,
     NoteTileComponent,
   ],
-  templateUrl: './note_list.component.html',
-  styleUrl: './note_list.component.scss',
+  templateUrl: './all_note_list.component.html',
+  styleUrl: './all_note_list.component.scss',
 })
-export class NoteListComponent {
+export class AllNoteListComponent {
   readableDate(string: string) {
     return new Date(string).toLocaleString(undefined, {
       year: '2-digit',
@@ -32,5 +27,7 @@ export class NoteListComponent {
       day: 'numeric',
     });
   }
-  constructor(public notesService: NotesService) {}
+  constructor(public notesService: NotesService) {
+    notesService.allNotes();
+  }
 }
