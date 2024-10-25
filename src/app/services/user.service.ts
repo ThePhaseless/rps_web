@@ -28,7 +28,7 @@ export class UserService {
           return;
         }
         this.apiService.loginLoginGet(social_user.idToken).subscribe({
-          next: () => {
+          next: (user) => {
             this.api_user.set(user);
             this.loggedIn.set(true);
           },
