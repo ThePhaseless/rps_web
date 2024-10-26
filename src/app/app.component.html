@@ -1,14 +1,16 @@
 <div class="flex w-full h-full justify-center">
-  <div class="flex flex-col items-center max-h-screen m-3">
+  <div class="flex flex-col items-center max-h-screen m-3 mb-5">
     <app-user-card class="mt-1"></app-user-card>
     <div class="min-h-4"></div>
     @if (userService.loggedIn()) {
     <app-note-create class="w-full"></app-note-create>
     <div class="min-h-4"></div>
     <app-note-list class="w-full"></app-note-list>
-    @if (userService.is_admin()) {
+    @if (userService.api_user()?.is_admin) {
     <div class="min-h-4"></div>
     <app-all-note-list class="w-full"></app-all-note-list>
+    <div class="min-h-4"></div>
+    <app-users-list class="w-full"></app-users-list>
     } } @else {
     <app-loading-card class="w-full"></app-loading-card>
     }

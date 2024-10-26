@@ -8,6 +8,7 @@ import { LoadingDialogComponent } from './components/loading_dialog/loading_dial
 import { NoteCreateComponent } from './components/note_create/note_create.component';
 import { NoteListComponent } from './components/note_list/note_list.component';
 import { UserCardComponent } from './components/user_card/user_card.component';
+import { UsersListComponent } from './components/users_list/users_list.component';
 import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { UserService } from './services/user.service';
     NoteListComponent,
     UserCardComponent,
     AllNoteListComponent,
+    UsersListComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

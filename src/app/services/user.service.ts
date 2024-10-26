@@ -8,7 +8,6 @@ export class UserService {
   loggedIn = signal<boolean>(false);
   connected = signal<boolean>(false);
   google_user = signal<SocialUser | null>(null);
-  is_admin = signal<boolean>(false);
   api_user = signal<User | null>(null);
 
   constructor(

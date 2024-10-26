@@ -1,5 +1,5 @@
 import { effect, Injectable, signal } from '@angular/core';
-import { DefaultService, Note } from '../../../api';
+import { Note, NoteService } from '../../../api';
 import { NoteOut } from '../../../api/model/noteOut';
 import { UserService } from './user.service';
 
@@ -10,17 +10,22 @@ export class NotesService {
   public notes = signal([] as Note[]);
   public allNotes = signal(undefined as Note[] | undefined);
   constructor(
-    private apiService: DefaultService,
+    private apiService: NoteService,
     private userService: UserService
   ) {
-    effect(() => {
-      if (this.userService.loggedIn()) {
-        this.getNotes();
-      } else {
-        this.notes.set([]);
-        this.allNotes.set(undefined);
+    effect(
+      () => {
+        if (this.userService.loggedIn()) {
+          this.getNotes();
+        } else {
+          this.notes.set([]);
+          this.allNotes.set(undefined);
+        }
+      },
+      {
+        allowSignalWrites: true,
       }
-    });
+    );
   }
 
   public sendNote(name: string, note: string, password?: string) {
@@ -38,7 +43,7 @@ export class NotesService {
   }
 
   public getNotes() {
-    this.apiService.getUserNotesNotesGet().subscribe({
+    this.apiService.getUserNotesNoteGet().subscribe({
       next: (data) => {
         this.notes.set(data);
       },
@@ -47,11 +52,8 @@ export class NotesService {
       },
     });
     console.log(this.userService.google_user()?.email);
-    if (
-      this.userService.google_user()?.email.toLowerCase() ==
-      'kukubaorch@gmail.com'
-    ) {
-      this.apiService.getAllNotesNotesAllGet().subscribe({
+    if (this.userService.api_user()?.is_admin) {
+      this.apiService.getAllNotesNoteAllGet().subscribe({
         next: (data) => {
           this.allNotes.set(data);
         },

@@ -101,12 +101,12 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createNoteNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
-    public createNoteNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
-    public createNoteNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
-    public createNoteNoteNotePost(noteInput: NoteInput, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public createNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
+    public createNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
+    public createNoteNotePost(noteInput: NoteInput, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
+    public createNoteNotePost(noteInput: NoteInput, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (noteInput === null || noteInput === undefined) {
-            throw new Error('Required parameter noteInput was null or undefined when calling createNoteNoteNotePost.');
+            throw new Error('Required parameter noteInput was null or undefined when calling createNoteNotePost.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -154,7 +154,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note`;
+        let localVarPath = `/note/`;
         return this.httpClient.request<Note>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -177,12 +177,12 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteNoteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any>;
-    public deleteNoteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
-    public deleteNoteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
-    public deleteNoteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public deleteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any>;
+    public deleteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
+    public deleteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
+    public deleteNoteNoteNoteIdDelete(noteId: string, password?: string, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (noteId === null || noteId === undefined) {
-            throw new Error('Required parameter noteId was null or undefined when calling deleteNoteNoteNoteNoteIdDelete.');
+            throw new Error('Required parameter noteId was null or undefined when calling deleteNoteNoteNoteIdDelete.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -227,7 +227,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        let localVarPath = `/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -248,10 +248,10 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllNotesNoteNoteAllGet(userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Note>>;
-    public getAllNotesNoteNoteAllGet(userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Note>>>;
-    public getAllNotesNoteNoteAllGet(userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Note>>>;
-    public getAllNotesNoteNoteAllGet(userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getAllNotesNoteAllGet(userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Note>>;
+    public getAllNotesNoteAllGet(userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Note>>>;
+    public getAllNotesNoteAllGet(userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Note>>>;
+    public getAllNotesNoteAllGet(userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -289,7 +289,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note/all`;
+        let localVarPath = `/note/all`;
         return this.httpClient.request<Array<Note>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -311,12 +311,12 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getNoteNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
-    public getNoteNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
-    public getNoteNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
-    public getNoteNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
+    public getNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
+    public getNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
+    public getNoteNoteNoteIdGet(noteId: string, password?: string, userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (noteId === null || noteId === undefined) {
-            throw new Error('Required parameter noteId was null or undefined when calling getNoteNoteNoteNoteIdGet.');
+            throw new Error('Required parameter noteId was null or undefined when calling getNoteNoteNoteIdGet.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -361,7 +361,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        let localVarPath = `/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
         return this.httpClient.request<Note>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -382,10 +382,10 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getUserNotesNoteNoteGet(userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Note>>;
-    public getUserNotesNoteNoteGet(userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Note>>>;
-    public getUserNotesNoteNoteGet(userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Note>>>;
-    public getUserNotesNoteNoteGet(userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getUserNotesNoteGet(userId?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Note>>;
+    public getUserNotesNoteGet(userId?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Note>>>;
+    public getUserNotesNoteGet(userId?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Note>>>;
+    public getUserNotesNoteGet(userId?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -423,7 +423,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note`;
+        let localVarPath = `/note/`;
         return this.httpClient.request<Array<Note>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -444,15 +444,15 @@ export class NoteService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateNoteNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
-    public updateNoteNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
-    public updateNoteNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
-    public updateNoteNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public updateNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Note>;
+    public updateNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Note>>;
+    public updateNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Note>>;
+    public updateNoteNoteNoteIdPut(noteId: string, noteInput: NoteInput, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (noteId === null || noteId === undefined) {
-            throw new Error('Required parameter noteId was null or undefined when calling updateNoteNoteNoteNoteIdPut.');
+            throw new Error('Required parameter noteId was null or undefined when calling updateNoteNoteNoteIdPut.');
         }
         if (noteInput === null || noteInput === undefined) {
-            throw new Error('Required parameter noteInput was null or undefined when calling updateNoteNoteNoteNoteIdPut.');
+            throw new Error('Required parameter noteInput was null or undefined when calling updateNoteNoteNoteIdPut.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -500,7 +500,7 @@ export class NoteService {
             }
         }
 
-        let localVarPath = `/note/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
+        let localVarPath = `/note/${this.configuration.encodeParam({name: "noteId", value: noteId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: "uuid"})}`;
         return this.httpClient.request<Note>('put', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
